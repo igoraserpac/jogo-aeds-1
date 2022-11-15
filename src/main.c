@@ -21,6 +21,7 @@ int main(){
     fruta maca = gera_fruta(&elvira);
     while(janela_esta_aberta()){
         jogar(&elvira, FACIL, &cont, &maca);
+
     }
     fecha_janela();
 }

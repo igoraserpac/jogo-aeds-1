@@ -1,60 +1,63 @@
 #include "telas.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void desenha_limites(){
-    desenha_retangulo(0, 0, 640, 10);
-    desenha_retangulo(0, 0, 10, 480);
-    desenha_retangulo(0, 470, 640, 10);
-    desenha_retangulo(630, 0, 10, 480);
+    desenha_retangulo(20, 20, 460, 8);
+    desenha_retangulo(20, 20, 8, 410);
+    desenha_retangulo(20, 422, 460, 8);
+    desenha_retangulo(472, 20, 8, 410);
 }
 
 void desenha_cabeca_direita(cobra *elvira){
-    cor(34,139,34,255);
+    cor(VERDE_ESCURO);
     desenha_retangulo((elvira->segmentos[0].posix) + 1, (elvira->segmentos[0].posiy), 5, 10);
     desenha_retangulo((elvira->segmentos[0].posix) + 1, (elvira->segmentos[0].posiy)+3, 8, 4);
     cor(PRETO);
     desenha_retangulo((elvira->segmentos[0].posix)+3, (elvira->segmentos[0].posiy)+2, 2, 2);
     desenha_retangulo((elvira->segmentos[0].posix)+3, (elvira->segmentos[0].posiy)+6, 2, 2);
     cor(VERMELHO);
-    desenha_retangulo((elvira->segmentos[0].posix)+8, (elvira->segmentos[0].posiy)+4, 3, 2);
+    desenha_retangulo((elvira->segmentos[0].posix)+8, (elvira->segmentos[0].posiy)+4, 3, 1);
 }
 
 void desenha_cabeca_cima(cobra *elvira){
-    cor(34,139,34,255);
+    cor(VERDE_ESCURO);
     desenha_retangulo((elvira->segmentos[0].posix), (elvira->segmentos[0].posiy)+4, 10, 5);
     desenha_retangulo((elvira->segmentos[0].posix)+3, (elvira->segmentos[0].posiy)+1, 4, 8);
     cor(PRETO);
     desenha_retangulo((elvira->segmentos[0].posix)+2, (elvira->segmentos[0].posiy)+5, 2, 2);
     desenha_retangulo((elvira->segmentos[0].posix)+6, (elvira->segmentos[0].posiy)+5, 2, 2);
     cor(VERMELHO);
-    desenha_retangulo((elvira->segmentos[0].posix)+4, (elvira->segmentos[0].posiy)-1, 2, 3);
+    desenha_retangulo((elvira->segmentos[0].posix)+4, (elvira->segmentos[0].posiy)-1, 1, 3);
 }
 
 
 void desenha_cabeca_esquerda(cobra *elvira){
-    cor(34,139,34,255);
+    cor(VERDE_ESCURO);
     desenha_retangulo((elvira->segmentos[0].posix)+4, (elvira->segmentos[0].posiy), 5, 10);
     desenha_retangulo((elvira->segmentos[0].posix)+1, (elvira->segmentos[0].posiy)+3, 8, 4);
     cor(PRETO);
     desenha_retangulo((elvira->segmentos[0].posix)+5, (elvira->segmentos[0].posiy)+2, 2, 2);
     desenha_retangulo((elvira->segmentos[0].posix)+5, (elvira->segmentos[0].posiy)+6, 2, 2);
     cor(VERMELHO);
-    desenha_retangulo((elvira->segmentos[0].posix)-1, (elvira->segmentos[0].posiy)+4, 3, 2);
+    desenha_retangulo((elvira->segmentos[0].posix)-1, (elvira->segmentos[0].posiy)+4, 3, 1);
 }
 
 void desenha_cabeca_baixo(cobra *elvira){
-    cor(34,139,34,255);
+    cor(VERDE_ESCURO);
     desenha_retangulo((elvira->segmentos[0].posix), (elvira->segmentos[0].posiy)+1, 10, 5);
     desenha_retangulo((elvira->segmentos[0].posix)+3, (elvira->segmentos[0].posiy)+1, 4, 8);
     cor(PRETO);
     desenha_retangulo((elvira->segmentos[0].posix)+2, (elvira->segmentos[0].posiy)+3, 2, 2);
     desenha_retangulo((elvira->segmentos[0].posix)+6, (elvira->segmentos[0].posiy)+3, 2, 2);
     cor(VERMELHO);
-    desenha_retangulo((elvira->segmentos[0].posix)+4, (elvira->segmentos[0].posiy)+8, 2, 3);
+    desenha_retangulo((elvira->segmentos[0].posix)+4, (elvira->segmentos[0].posiy)+8, 1, 3);
 }
 
 void desenha_cauda_direita(cobra *elvira, int *cont){
     int posicao = (*cont)%12;
-    cor(34,139,34,255);
+    cor(VERDE_ESCURO);
     if(posicao >= 0 && posicao <= 3){
         ponto cauda[4];
         cauda[0][0] = (elvira->segmentos[(elvira->tamanho)-1].posix) + 9;
@@ -89,7 +92,7 @@ void desenha_cauda_direita(cobra *elvira, int *cont){
 
 void desenha_cauda_cima(cobra *elvira, int *cont){
     int posicao = (*cont)%12;
-    cor(34,139,34,255);
+    cor(VERDE_ESCURO);
     if(posicao >= 0 && posicao <= 3){
         ponto cauda[4];
         cauda[0][0] = (elvira->segmentos[(elvira->tamanho)-1].posix) + 1;
@@ -124,7 +127,7 @@ void desenha_cauda_cima(cobra *elvira, int *cont){
 
 void desenha_cauda_esquerda(cobra *elvira, int *cont){
     int posicao = (*cont)%12;
-    cor(34,139,34,255);
+    cor(VERDE_ESCURO);
     if(posicao >= 0 && posicao <= 3){
         ponto cauda[4];
         cauda[0][0] = (elvira->segmentos[(elvira->tamanho)-1].posix) + 1;
@@ -159,7 +162,7 @@ void desenha_cauda_esquerda(cobra *elvira, int *cont){
 
 void desenha_cauda_baixo(cobra *elvira, int *cont){
     int posicao = (*cont)%12;
-    cor(34,139,34,255);
+    cor(VERDE_ESCURO);
     if(posicao >= 0 && posicao <= 3){
         ponto cauda[4];
         cauda[0][0] = (elvira->segmentos[(elvira->tamanho)-1].posix) + 1;
@@ -192,7 +195,7 @@ void desenha_cauda_baixo(cobra *elvira, int *cont){
     }
 }
 
-int opcao = NICK_NAME;
+int opcao = ESCOLHE_DIFICULDADE;
 
 
 void menu_iniciar(int *tela){
@@ -200,7 +203,7 @@ void menu_iniciar(int *tela){
     fonte("assets/slkscr.ttf", 60);
     desenha_texto(150, 80, "--SNAKE--");
     cor(VERMELHO);
-    if(opcao == NICK_NAME){
+    if(opcao == 2){
         fonte("assets/slkscr.ttf", 50);
         desenha_texto(70, 210, ">");
     }
@@ -214,27 +217,66 @@ void menu_iniciar(int *tela){
     fonte("assets/slkscr.ttf", 50);
     desenha_texto(100, 250, "Ranking");
     if(tecla_acabou_de_ser_apertada(BAIXO) || tecla_acabou_de_ser_apertada(CIMA)){
-        if(opcao == NICK_NAME) opcao = RANKING;
-        else opcao = NICK_NAME;
+        if(opcao == 2) opcao = RANKING;
+        else opcao = 2;
     }
-    if(tecla_acabou_de_ser_apertada(ESPACO)){
+    if(tecla_acabou_de_ser_apertada(ENTER)){
         *tela = opcao;
         opcao = 1;
     };
 }
+
+
+void escolhe_dificuldade(int *tela, int *dif){
+    cor(VERDE);
+    fonte("assets/slkscr.ttf", 60);
+    desenha_texto(150, 80, "--SNAKE--");
+    cor(VERMELHO);
+    if(*dif == FACIL){
+        fonte("assets/slkscr.ttf", 50);
+        desenha_texto(70, 210, ">");
+    }
+    if(*dif == MEDIO){
+        fonte("assets/slkscr.ttf", 50);
+        desenha_texto(70, 250, ">");
+    }
+    if(*dif == DIFICIL){
+        fonte("assets/slkscr.ttf", 50);
+        desenha_texto(70, 290, ">");
+    }
+    cor(BRANCO);
+    fonte("assets/slkscr.ttf", 50);
+    desenha_texto(100, 210, "Facil");
+    fonte("assets/slkscr.ttf", 50);
+    desenha_texto(100, 250, "Medio");
+    fonte("assets/slkscr.ttf", 50);
+    desenha_texto(100, 290, "Dificil");
+    if(tecla_acabou_de_ser_apertada(BAIXO)){
+        if(*dif == FACIL) *dif = MEDIO;
+        else if(*dif == MEDIO) *dif = DIFICIL;
+        else if(*dif == DIFICIL) *dif = FACIL;
+    }
+    if(tecla_acabou_de_ser_apertada(CIMA)){
+        if(*dif == FACIL) *dif = DIFICIL;
+        else if(*dif == MEDIO) *dif = FACIL;
+        else if(*dif == DIFICIL) *dif = MEDIO;
+    }
+    if(tecla_acabou_de_ser_apertada(ESPACO)){
+        *tela = 3;
+    }
+}
+
 
 int primeira = 65;
 int segunda = 65;
 int terceira = 65;
 int letra_sendo_alterada = 1;
 
-void recebe_nick(int *tela){
-    char string[4];
-    string[0] = primeira;
-    string[1] = segunda;
-    string[2] = terceira;
-    string[4] = '\0';
-
+void recebe_nick(int *tela, char apelido[4]){
+    apelido[0] = primeira;
+    apelido[1] = segunda;
+    apelido[2] = terceira;
+    apelido[4] = '\0';
     if(letra_sendo_alterada == 1){
         if(tecla_acabou_de_ser_apertada(CIMA)) primeira++;
         if(tecla_acabou_de_ser_apertada(BAIXO)) primeira--;
@@ -257,22 +299,74 @@ void recebe_nick(int *tela){
     if(tecla_acabou_de_ser_apertada(ESQUERDA)) letra_sendo_alterada--;
     if(letra_sendo_alterada == 4) letra_sendo_alterada = 1;
     if(letra_sendo_alterada == 0) letra_sendo_alterada = 3;
-    desenha_texto(70 + (35*letra_sendo_alterada), 170, "-");
-    desenha_texto(100, 200, string);
-    if(tecla_acabou_de_ser_apertada(ENTER)) *tela = MAIN_GAME;
+    cor(VERDE);
+    desenha_texto(70 + (35*letra_sendo_alterada), 175, "-");
+    cor(BRANCO);
+    desenha_texto(100, 200, apelido);
+    if(tecla_acabou_de_ser_apertada(ENTER)){
+        *tela = MAIN_GAME;
+    }
+}
+
+char pontos[5];
+
+void ranking(int *tela){
+    FILE *file = fopen("ranking.csv", "r");
+    int i = 0;
+    while(!feof(file)){
+        char nome[4];
+        char pontos[5];
+        fscanf(file, "%3[^;];%4[^;]\n", nome, pontos);
+        fonte("assets/slkscr.ttf", 30);
+        desenha_texto(100, 250, nome);
+        fonte("assets/slkscr.ttf", 30);
+        desenha_texto(300, 250, pontos);
+    }
+    fclose(file);
+    if(tecla_acabou_de_ser_apertada(ESC)) *tela = START_MENU;
+}
+
+void game_over(cobra *elvira, int *tela, int *pontuacao){
+    snprintf(pontos, 5, "%d", *pontuacao);
+    fonte("assets/slkscr.ttf", 70);
+    desenha_texto(100, 250, "GAME OVER");
+    fonte("assets/slkscr.ttf", 40);
+    desenha_texto(100, 290, "pressione espaco");
+    fonte("assets/slkscr.ttf", 55);
+    desenha_texto(100, 350, "pontos: ");
+    fonte("assets/slkscr.ttf", 55);
+    desenha_texto(430, 350, pontos);
+    if(tecla_acabou_de_ser_apertada(ESPACO)){
+        *pontuacao = 0;
+        elvira->tamanho = 2;
+        elvira->direcao = PARA_DIREITA;
+        segmento s[3072];
+        for(int i=0; i<elvira->tamanho; i++){
+            s[i].posix = 310 - (TAMANHO_SEGMENTO * i);
+            s[i].posiy = 230;   
+            elvira->segmentos[i] = s[i];
+        }
+        *tela = MAIN_GAME;
+    }
 }
 
 
 
-void jogar(cobra *elvira, int lvl, int *cont, fruta *maca){
-    cor(255,239,219,255);
+void jogar(cobra *elvira, int lvl, int *cont, fruta *maca, int *pontuacao, int *tela){
+    cor(244,164,96,255);
     desenha_retangulo(0, 0, 640, 480);
-    cor(CINZA_ESCURO);
+    for(int i = 1; i<10; i++){
+        for(int j = 1; j<9; j++){
+            desenha_imagem(i*50, j*50, "assets/gramaa.png");
+        }
+    }
+    desenha_retangulo(20, 20, 8, 8);
+    cor(MARROM);
     desenha_limites();
-    dificuldade(cont, lvl, elvira, maca);
-    cor(VERDE);
+    dificuldade(cont, lvl, elvira, maca, pontuacao, tela);
+    cor(VERDE_ESCURO);
     desenha_retangulo((maca->posix)+4, (maca->posiy), 3, 2);
-    cor(220, 20, 60);
+    cor(225, 0, 0, 255);
     desenha_retangulo((maca->posix)+2, (maca->posiy)+2, 6, 6);
     if(elvira->tamanho == 1){
         if(elvira->direcao == PARA_DIREITA) desenha_cabeca_direita(elvira);
@@ -293,15 +387,19 @@ void jogar(cobra *elvira, int lvl, int *cont, fruta *maca){
                     if(elvira->segmentos[(elvira->tamanho)-1].posix > elvira->segmentos[(elvira->tamanho)-2].posix) desenha_cauda_esquerda(elvira, cont);
                     if(elvira->segmentos[(elvira->tamanho)-1].posiy < elvira->segmentos[(elvira->tamanho)-2].posiy) desenha_cauda_baixo(elvira, cont);
                 }else{
-                    cor(34,139,34,255);
+                    cor(VERDE_ESCURO);
                     desenha_retangulo((elvira->segmentos[i].posix)+1, (elvira->segmentos[i].posiy)+1, TAMANHO_SEGMENTO-2, TAMANHO_SEGMENTO-2);
                 }
             }
         }
     }
-    if(tecla_acabou_de_ser_apertada(CIMA) && elvira->direcao != PARA_BAIXO) elvira->direcao = PARA_CIMA;
-    if(tecla_acabou_de_ser_apertada(BAIXO) && elvira->direcao != PARA_CIMA) elvira->direcao = PARA_BAIXO;
-    if(tecla_acabou_de_ser_apertada(ESQUERDA) && elvira->direcao != PARA_DIREITA) elvira->direcao = PARA_ESQUERDA;
-    if(tecla_acabou_de_ser_apertada(DIREITA) && elvira->direcao != PARA_ESQUERDA) elvira->direcao = PARA_DIREITA;
+    snprintf(pontos, 5, "%d", *pontuacao);
+    cor(PRETO);
+    fonte("assets/slkscr.ttf", 70);
+    desenha_texto(530, 150, pontos);
+    if(tecla_acabou_de_ser_apertada(CIMA) && elvira->segmentos[0].posiy == elvira->segmentos[1].posiy) elvira->direcao = PARA_CIMA;
+    if(tecla_acabou_de_ser_apertada(BAIXO) && elvira->segmentos[0].posiy == elvira->segmentos[1].posiy) elvira->direcao = PARA_BAIXO;
+    if(tecla_acabou_de_ser_apertada(ESQUERDA) && elvira->segmentos[0].posix == elvira->segmentos[1].posix) elvira->direcao = PARA_ESQUERDA;
+    if(tecla_acabou_de_ser_apertada(DIREITA) && elvira->segmentos[0].posix == elvira->segmentos[1].posix) elvira->direcao = PARA_DIREITA;
     (*cont)++;
 }

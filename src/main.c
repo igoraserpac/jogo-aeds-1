@@ -9,6 +9,7 @@
 
 int main(){
     int tela = START_MENU;
+    int pontuacao = 0;
     int cont = 0;
     cobra elvira;
     elvira.tamanho = 2;
@@ -21,10 +22,15 @@ int main(){
     }
     abre_janela(640, 480);
     fruta maca = gera_fruta(&elvira);
+    int difi = FACIL;
+    char apelido[4];
     while(janela_esta_aberta()){
         if(tela == START_MENU) menu_iniciar(&tela);
-        if(tela == NICK_NAME) recebe_nick(&tela);
-        if(tela == MAIN_GAME) jogar(&elvira, MEDIO, &cont, &maca);
+        if(tela == ESCOLHE_DIFICULDADE) escolhe_dificuldade(&tela, &difi);
+        if(tela == NICK_NAME) recebe_nick(&tela, apelido);
+        if(tela == MAIN_GAME) jogar(&elvira, difi, &cont, &maca, &pontuacao, &tela);
+        if(tela == GAME_OVER) game_over(&elvira, &tela, &pontuacao);
+        if(tela == RANKING) ranking(&tela);
     }
     fecha_janela();
 }

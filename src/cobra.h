@@ -36,7 +36,7 @@ typedef struct{
     int posiy;
 }fruta;
 
-void dificuldade(int *cont, int lvl, cobra *elvira, fruta *maca);
+void dificuldade(int *cont, int lvl, cobra *elvira, fruta *maca, int *pontuacao, int *tela);
 // Seta a dificuldade do jogo.
 
 
@@ -44,7 +44,7 @@ fruta gera_fruta(cobra *elvira);
 // Função recursiva para gerar a maçã em um lugar aleatório toda vez que é comida;
 
 
-void andar(cobra *elvira, fruta *maca);
+void andar(cobra *elvira, fruta *maca, int *pontuacao, int *tela);
 // Anda com a cobra:
 //     - Copia a posição da cabeça para a última posição do vetor;
 //     - Soma o tamanho do segmento em px na direção do movimento;

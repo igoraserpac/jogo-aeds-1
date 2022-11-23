@@ -1,16 +1,27 @@
 #include "cobra.h"
 #include "telas.h"
 
+int confere_segmentos_para_fruta(fruta *maca, cobra *elvira){
+    for(int i=0; i<elvira->tamanho; i++){
+        if(maca->posix == elvira->segmentos[i].posix && maca->posiy == elvira->segmentos[i].posiy) return 1;
+    }
+    return 0;
+}
+
+
 fruta gera_fruta(cobra *elvira){
     srand(time(NULL));
     int x = (rand()%429)+30;
     int y = (rand()%379)+30;
-    for(int i=0; i<elvira->tamanho; i++){
-        if(x == elvira->segmentos[i].posix && y == elvira->segmentos[i].posiy) return gera_fruta(elvira);
-    }
     fruta maca;
     maca.posix = x - x%TAMANHO_SEGMENTO;
     maca.posiy = y - y%TAMANHO_SEGMENTO;
+    while(confere_segmentos_para_fruta(&maca, elvira)){
+        x = (rand()%429)+30;
+        y = (rand()%379)+30;
+        maca.posix = x - x%TAMANHO_SEGMENTO;
+        maca.posiy = y - y%TAMANHO_SEGMENTO;
+    }
     return maca;
 }
 
@@ -47,12 +58,12 @@ void organiza_vetor(cobra *elvira){
 }
 
 void cresce(cobra *elvira){
+    toca_som("assets/slime8.wav");
     elvira->tamanho++;
     elvira->segmentos[(elvira->tamanho)-1] = elvira->segmentos[(elvira->tamanho)-2];
 }
 
 void andar(cobra *elvira, fruta *maca, int *pontuacao, int *tela){
-    printf("%d\n", *pontuacao);
     switch (elvira->direcao){
     case PARA_DIREITA:
         (elvira->segmentos)[(elvira->tamanho)-1].posix = (elvira->segmentos)[0].posix + TAMANHO_SEGMENTO;

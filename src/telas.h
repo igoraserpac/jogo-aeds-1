@@ -15,7 +15,7 @@
 #define GAME_OVER 5
 #define RANKING 6
 
-void game_over(cobra *elvira, int *tela, int *pontuacao);
+void game_over(cobra *elvira, int *tela, int *pontuacao, char *apelido);
 
 void escolhe_dificuldade(int *tela, int *dif);
 

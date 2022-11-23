@@ -16,8 +16,8 @@ int main(){
     elvira.direcao = PARA_DIREITA;
     segmento s[3072];
     for(int i=0; i<elvira.tamanho; i++){
-        s[i].posix = 310 - (TAMANHO_SEGMENTO * i);
-        s[i].posiy = 230;
+        s[i].posix = 200 - (TAMANHO_SEGMENTO * i);
+        s[i].posiy = 200;
         elvira.segmentos[i] = s[i];
     }
     abre_janela(640, 480);
@@ -25,12 +25,29 @@ int main(){
     int difi = FACIL;
     char apelido[4];
     while(janela_esta_aberta()){
-        if(tela == START_MENU) menu_iniciar(&tela);
-        if(tela == ESCOLHE_DIFICULDADE) escolhe_dificuldade(&tela, &difi);
+        if(tela == START_MENU){
+            if(!som_esta_tocando("assets/stage1.wav")) toca_som("assets/stage1.wav");
+            menu_iniciar(&tela);
+        }
+        if(tela == ESCOLHE_DIFICULDADE){
+            para_som("assets/stage1.wav");
+            if(!som_esta_tocando("assets/select.wav")) toca_som("assets/select.wav");
+            escolhe_dificuldade(&tela, &difi);
+        }
         if(tela == NICK_NAME) recebe_nick(&tela, apelido);
-        if(tela == MAIN_GAME) jogar(&elvira, difi, &cont, &maca, &pontuacao, &tela);
-        if(tela == GAME_OVER) game_over(&elvira, &tela, &pontuacao);
-        if(tela == RANKING) ranking(&tela);
+        if(tela == MAIN_GAME){
+            para_som("assets/select.wav");
+            if(!som_esta_tocando("assets/main_game.wav")) toca_som("assets/main_game.wav");
+            jogar(&elvira, difi, &cont, &maca, &pontuacao, &tela);
+        }
+        if(tela == GAME_OVER){
+            para_som("assets/main_game.wav");
+            game_over(&elvira, &tela, &pontuacao, apelido);
+        }
+        if(tela == RANKING){
+            if(!som_esta_tocando("assets/stage1.wav")) toca_som("assets/stage1.wav");
+            ranking(&tela);
+        }
     }
     fecha_janela();
 }

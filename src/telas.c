@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "lib/jogo/src/input.c"
+#include "desenhos.h"
 
 void desenha_limites(){
     desenha_retangulo(20, 20, 460, 8);
@@ -494,19 +494,17 @@ void jogar(cobra *elvira, int lvl, int *cont, fruta *maca, int *pontuacao, int *
     rankeado = 0;
     cor(244,164,96,255);
     desenha_retangulo(0, 0, 640, 480);
-    for(int i = 1; i<10; i++){
-        for(int j = 1; j<9; j++){
-            desenha_imagem(i*50, j*50, "assets/grama.png");
+    for(int i = 0; i<4; i++){
+        for(int j = 0; j<4; j++){
+            desenha_imagem(75+i*100, 75+j*100, "assets/campo.png");
         }
     }
+    for(int i=0; i<4; i++) desenha_imagem(435, 75+i*100, "assets/campo.png");
     desenha_retangulo(20, 20, 8, 8);
     cor(MARROM);
     desenha_limites();
     dificuldade(cont, lvl, elvira, maca, pontuacao, tela);
-    cor(VERDE);
-    desenha_retangulo((maca->posix)+4, (maca->posiy), 3, 2);
-    cor(225, 0, 0, 255);
-    desenha_retangulo((maca->posix)+2, (maca->posiy)+2, 6, 6);
+    desenha_imagem(maca->posix+5, maca->posiy+5, "assets/pintinho.gif");
     if(elvira->tamanho == 1){
         if(elvira->direcao == PARA_DIREITA) desenha_cabeca_direita(elvira);
         if(elvira->direcao == PARA_CIMA) desenha_cabeca_cima(elvira);
@@ -515,23 +513,26 @@ void jogar(cobra *elvira, int lvl, int *cont, fruta *maca, int *pontuacao, int *
     }else{
         for(int i=0; i<elvira->tamanho; i++){
             if(i == 0){
-                if(elvira->segmentos[0].posix > elvira->segmentos[1].posix) desenha_cabeca_direita(elvira);
-                if(elvira->segmentos[0].posiy < elvira->segmentos[1].posiy) desenha_cabeca_cima(elvira);
-                if(elvira->segmentos[0].posix < elvira->segmentos[1].posix) desenha_cabeca_esquerda(elvira);
-                if(elvira->segmentos[0].posiy > elvira->segmentos[1].posiy) desenha_cabeca_baixo(elvira);
+                // if(elvira->segmentos[0].posix > elvira->segmentos[1].posix) desenha_cabeca_direita(elvira);
+                // if(elvira->segmentos[0].posiy < elvira->segmentos[1].posiy) desenha_cabeca_cima(elvira);
+                // if(elvira->segmentos[0].posix < elvira->segmentos[1].posix) desenha_cabeca_esquerda(elvira);
+                // if(elvira->segmentos[0].posiy > elvira->segmentos[1].posiy) desenha_cabeca_baixo(elvira);
+                desenha_cabeca(elvira);
             }else{
                 if(i == (elvira->tamanho)-1){
-                    if(elvira->segmentos[(elvira->tamanho)-1].posix < elvira->segmentos[(elvira->tamanho)-2].posix) desenha_cauda_direita(elvira, cont);
-                    if(elvira->segmentos[(elvira->tamanho)-1].posiy > elvira->segmentos[(elvira->tamanho)-2].posiy) desenha_cauda_cima(elvira, cont);
-                    if(elvira->segmentos[(elvira->tamanho)-1].posix > elvira->segmentos[(elvira->tamanho)-2].posix) desenha_cauda_esquerda(elvira, cont);
-                    if(elvira->segmentos[(elvira->tamanho)-1].posiy < elvira->segmentos[(elvira->tamanho)-2].posiy) desenha_cauda_baixo(elvira, cont);
+                    desenha_cauda(elvira);
+                    // if(elvira->segmentos[(elvira->tamanho)-1].posix < elvira->segmentos[(elvira->tamanho)-2].posix) desenha_cauda_direita(elvira, cont);
+                    // if(elvira->segmentos[(elvira->tamanho)-1].posiy > elvira->segmentos[(elvira->tamanho)-2].posiy) desenha_cauda_cima(elvira, cont);
+                    // if(elvira->segmentos[(elvira->tamanho)-1].posix > elvira->segmentos[(elvira->tamanho)-2].posix) desenha_cauda_esquerda(elvira, cont);
+                    // if(elvira->segmentos[(elvira->tamanho)-1].posiy < elvira->segmentos[(elvira->tamanho)-2].posiy) desenha_cauda_baixo(elvira, cont);
                 }else{
-                    preenchimento(true);
-                    cor(VERDE);
-                    desenha_retangulo((elvira->segmentos[i].posix)+1, (elvira->segmentos[i].posiy)+1, TAMANHO_SEGMENTO-2, TAMANHO_SEGMENTO-2);
-                    preenchimento(false);
-                    cor(PRETO);
-                    desenha_retangulo((elvira->segmentos[i].posix)+1, (elvira->segmentos[i].posiy)+1, TAMANHO_SEGMENTO-2, TAMANHO_SEGMENTO-2);
+                    desenha_segmento(elvira, i);
+                    // preenchimento(true);
+                    // cor(VERDE);
+                    // desenha_retangulo((elvira->segmentos[i].posix)+1, (elvira->segmentos[i].posiy)+1, TAMANHO_SEGMENTO-2, TAMANHO_SEGMENTO-2);
+                    // preenchimento(false);
+                    // cor(PRETO);
+                    // desenha_retangulo((elvira->segmentos[i].posix)+1, (elvira->segmentos[i].posiy)+1, TAMANHO_SEGMENTO-2, TAMANHO_SEGMENTO-2);
                 }
             }
         }

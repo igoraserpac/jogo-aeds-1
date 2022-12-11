@@ -1,6 +1,27 @@
 #include "cobra.h"
 #include "telas.h"
 
+
+
+cobra *gera_cobra(){
+    cobra *elvira = (cobra*)malloc(sizeof(cobra));
+    elvira->tamanho = 2;
+    elvira->direcao = PARA_DIREITA;
+    elvira->segmentos = (segmento*)malloc(3072*sizeof(segmento));
+    segmento s;
+    for(int i=0; i<elvira->tamanho; i++){
+        s.posix = 200 - (TAMANHO_SEGMENTO * i);
+        s.posiy = 200;
+        elvira->segmentos[i] = s;
+    }
+    return elvira;
+}
+
+void destroi_cobra(cobra *elvira){
+    free(elvira->segmentos);
+    free(elvira);
+}
+
 int confere_segmentos_para_fruta(fruta *maca, cobra *elvira){
     for(int i=0; i<elvira->tamanho; i++){
         if(maca->posix == elvira->segmentos[i].posix && maca->posiy == elvira->segmentos[i].posiy) return 1;

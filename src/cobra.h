@@ -28,13 +28,17 @@ typedef struct{
 typedef struct{
     int tamanho;
     int direcao;
-    segmento segmentos[];
+    segmento *segmentos;
 }cobra;
 
 typedef struct{
     int posix;
     int posiy;
 }fruta;
+
+cobra *gera_cobra();
+
+void destroi_cobra(cobra *elvira);
 
 void dificuldade(int *cont, int lvl, cobra *elvira, fruta *maca, int *pontuacao, int *tela);
 // Seta a dificuldade do jogo.

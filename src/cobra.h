@@ -37,8 +37,10 @@ typedef struct{
 }fruta;
 
 cobra *gera_cobra();
+// Aloca a cobra dinamicamente
 
 void destroi_cobra(cobra *elvira);
+// Libera a memória alocada
 
 void dificuldade(int *cont, int lvl, cobra *elvira, fruta *maca, int *pontuacao, int *tela);
 // Seta a dificuldade do jogo.

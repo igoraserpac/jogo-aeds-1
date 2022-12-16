@@ -47,7 +47,7 @@ void dificuldade(int *cont, int lvl, cobra *elvira, fruta *maca, int *pontuacao,
 
 
 fruta gera_fruta(cobra *elvira);
-// Função recursiva para gerar a maçã em um lugar aleatório toda vez que é comida;
+// Gera a maçã em um lugar aleatório toda vez que é comida;
 
 
 void andar(cobra *elvira, fruta *maca, int *pontuacao, int *tela);
@@ -62,7 +62,5 @@ void organiza_vetor(cobra *elvira);
 //     - Salva o valor da ultima posição do vetor;
 //     - Copia todas os valores para a posição seguinte;
 //     - Copia o valor salvo para a posição zero.
-
-
 
 #endif

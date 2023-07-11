@@ -1,5 +1,7 @@
 # jogo-aeds-1 - SNAKE
 
+[!Capa](https://raw.githubusercontent.com/igoraserpac/jogo-aeds-1/master/assets/capa.png)
+
 Para começar a desenvolver o seu trabalho, clone este repositório. Ele vem com
 todas as configurações de debug e compilação para Windows e para Linux
 configuradas e testadas, para que você possa focar em desenvolver o jogo.

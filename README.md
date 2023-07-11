@@ -1,6 +1,4 @@
-# jogo-aeds-1 - Repositório base para o TP de AEDS 1 / 2022.2
-
-## Sobre este repositório
+# jogo-aeds-1 - SNAKE
 
 Para começar a desenvolver o seu trabalho, clone este repositório. Ele vem com
 todas as configurações de debug e compilação para Windows e para Linux
